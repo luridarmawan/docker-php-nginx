@@ -1,7 +1,12 @@
-FROM php:8.4-fpm
+# Build
+#   docker build -f Dockerfile --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -t luri/php-apache .
+# Build multi-arch Docker image
+#   docker buildx build --platform linux/amd64,linux/arm64 -t luri/php-apache:multiarch .
+
+FROM php:8.2-fpm
 
 # install requirement file
-RUN apt-get update && apt-get install -y nginx nano git zip unzip && \
+RUN apt-get update && apt-get install -y nginx nano git curl binutils wget zip unzip && \
     apt-get install -y build-essential libmagickwand-dev && \
     pecl install imagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
