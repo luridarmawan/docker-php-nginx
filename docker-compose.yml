@@ -5,9 +5,9 @@ services:
       context: .
     image: luri/php-nginx
     environment:
-      - APP_PORT
+      - PORT
     ports:
-      - "${APP_PORT}:80"
+      - "${PORT}:80"
 #    volumes:
 #      - ./src:/app
     env_file:
